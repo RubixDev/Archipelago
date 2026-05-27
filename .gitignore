@@ -68,6 +68,7 @@ Output Logs/
 /custom_worlds
 # stubgen output
 /out/
+/schema/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
