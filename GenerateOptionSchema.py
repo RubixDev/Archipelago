@@ -11,7 +11,6 @@ from Options import (
     NamedRange,
     Option,
     OptionCounter,
-    OptionDict,
     OptionList,
     OptionSet,
     Range,
@@ -19,9 +18,18 @@ from Options import (
     Toggle,
     VerifyKeys,
 )
-from OptionsCreator import option_can_be_randomized
 from worlds import AutoWorldRegister
 from worlds.AutoWorld import World
+
+
+# from OptionsCreator.py, but don't import all the kvui stuff
+def option_can_be_randomized(option: type[Option]):
+    # most options can be randomized, so we should just check for those that cannot
+    if not option.supports_weighting:
+        return False
+    if issubclass(option, FreeText) and not issubclass(option, TextChoice):
+        return False
+    return True
 
 
 def create_type(option: type[Option], world: type[World]):
