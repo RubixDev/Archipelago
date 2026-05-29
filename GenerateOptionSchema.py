@@ -118,7 +118,7 @@ def generate_for_world(world_name: str, world: type[World]) -> dict:
                     {
                         "name": name,
                         "display_name": getattr(option, "display_name", name),
-                        "description": dedent(option.__doc__).strip(),
+                        "description": dedent(option.__doc__ or "").strip(),
                         "randomizable": option_can_be_randomized(option),
                         "visibility": option.visibility,
                         **create_type(option, world),
